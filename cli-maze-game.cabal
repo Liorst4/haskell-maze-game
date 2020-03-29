@@ -19,7 +19,7 @@ extra-source-files:  CHANGELOG.md
 
 executable cli-maze-game
   main-is:             Main.hs
-  -- other-modules:
+  other-modules:       Game
   -- other-extensions:
   build-depends:       base >=4.13 && <4.14
   hs-source-dirs:      app
