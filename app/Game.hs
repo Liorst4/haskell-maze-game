@@ -1,6 +1,7 @@
 module Game where
 
 import Data.List
+import Data.Char
 
 -- TODO: Derive from Show
 data Tile = Floor
@@ -12,6 +13,15 @@ data Move = Left
           | Right
           | Up
           | Down
+
+moveFromString :: String -> Maybe Move
+moveFromString input =
+  case map toLower input of
+    "up" -> Just Game.Up
+    "down" -> Just Game.Down
+    "left" -> Just Game.Left
+    "right" -> Just Game.Right
+    _ -> Nothing
 
 data Location = Location {x :: Int, y :: Int}
   deriving (Eq)
