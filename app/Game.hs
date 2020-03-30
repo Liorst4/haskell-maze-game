@@ -1,5 +1,8 @@
 module Game where
 
+import Data.List
+
+-- TODO: Derive from Show
 data Tile = Floor
           | Wall
           | Exit
@@ -11,7 +14,9 @@ data Move = Left
           | Down
 
 data Location = Location {x :: Int, y :: Int}
+  deriving (Eq)
 
+-- TODO: Derive from Show
 data Game = Game {
   player :: Location,
   board :: [[Tile]]
@@ -46,3 +51,20 @@ turn game move =
       _ -> Nothing
     Nothing -> Nothing
   where nextPlayerLocation = nextLocation (player game) move
+
+-- TODO: 1. Generate the board purly
+--       2. Edit the rendered board to add the player
+showGame :: Game -> String
+showGame game = intercalate "\n" (map (showRows game) [0..length (board game) - 1])
+  where
+    showRows game index = [showLocation game (Location a b) | a <- [0..length ((board game) !! index) - 1], b <- [index]]
+    showLocation game location =
+        if location == player game
+        then playerChar
+        else (case tileAt (board game) location of
+                Nothing -> '?'
+                Just t -> case t of
+                            Floor -> ' '
+                            Wall -> 'O'
+                            Exit -> '*')
+    playerChar = 'P'
