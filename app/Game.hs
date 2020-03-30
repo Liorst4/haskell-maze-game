@@ -47,8 +47,8 @@ turn :: Game -> Move -> Maybe Game
 turn game move =
   case tileAt (board game) nextPlayerLocation of
     Just tile -> case tile of
-      Floor -> Just (Game nextPlayerLocation (board game))
-      _ -> Nothing
+      Wall -> Nothing
+      _ -> Just (Game nextPlayerLocation (board game))
     Nothing -> Nothing
   where nextPlayerLocation = nextLocation (player game) move
 
