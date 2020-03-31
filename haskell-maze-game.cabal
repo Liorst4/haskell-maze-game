@@ -3,7 +3,7 @@ cabal-version:       >=1.10
 -- init'.  For further documentation, see
 -- http://haskell.org/cabal/users-guide/
 
-name:                cli-maze-game
+name:                haskell-maze-game
 version:             0.1.0.0
 -- synopsis:
 -- description:
